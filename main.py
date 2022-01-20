@@ -12,8 +12,12 @@ from mcstatus import MinecraftServer
 from datetime import datetime
 import time
 
+with open('token.txt') as f:
+    lines = f.readlines()
+    token12235709 = lines[0]
+
 config = {
-    "token": "OTI0NDc3OTk3Mjg3ODgyNzUz.YcfJOg.26ZGFKkELwyl0ntrswsrG83nfDs",
+    "token": token12235709,
     "prefix": "!",
     "status": "with people",
     "java-mc-ip": "curvy-finger.auto.playit.gg",
@@ -23,8 +27,6 @@ config = {
     "joinleavechannel": 933459417054208030,
     "suggestions-channel": 933459679969935370
 }
-
-
 
 bot = Bot(command_prefix=config["prefix"], intents=nextcord.Intents.default())
 
@@ -284,5 +286,4 @@ async def on_member_join(member):
 async def on_member_remove(member):
     chnl = bot.get_channel(config['joinleavechannel'])
     await chnl.send(f"{member} just left!")
-                           
 bot.run(config["token"])
